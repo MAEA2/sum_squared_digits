@@ -5,10 +5,13 @@ output:
     theme: cayman
     highlight: github
     toc: true
-    toc_dep: 1
+    toc_dep: 2
     number_sections: false
 ---
 
+# きっかけ
+
+結城先生の[引用リツイート](https://twitter.com/hyuki/status/977808341383593985)
 
 # おもしろいループ
 
@@ -26,7 +29,7 @@ $$
 
 を考えます。
 
-このとき、こちらの結城先生のつぶやき[tweet](https://twitter.com/hyuki/status/977808341383593985)によれば、数列$n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots$は,次の$2$つのパターンに落ちるそうです。
+このとき、数列$n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots$は,次の$2$つのパターンに落ちるそうです。
 
 
 - $\ldots,1_{(10)},1_{(10)},\ldots$に落ちる。
