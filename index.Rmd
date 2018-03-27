@@ -1,5 +1,5 @@
 ---
-title: "おもしろいループ"
+title: "Squared Digit Sum"
 output:
   prettydoc::html_pretty:
     theme: cayman
@@ -10,7 +10,7 @@ output:
 ---
 
 
-# 各桁の平方和の繰り返し
+# おもしろいループ
 
 $n \in\mathbb{N}$とします。
 
@@ -26,7 +26,7 @@ $$
 
 を考えます。
 
-このとき、こちらのつぶやき["tekitonatsubuyakinorinku"](tweet)によれば、数列$n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots$は,次の$2$つのパターンに落ちるそうです。
+このとき、こちらの結城先生のつぶやき[tweet](https://twitter.com/hyuki/status/977808341383593985)によれば、数列$n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots$は,次の$2$つのパターンに落ちるそうです。
 
 
 - $\ldots,1_{(10)},1_{(10)},\ldots$に落ちる。
@@ -91,8 +91,10 @@ out_put_loop<-function(seq){
 
 base=10
 
-for(i in 1:100){
-  print(trans_decimal(decimal_digits(i,base=base),base=base))
+sample=sample.int(1000,10)
+
+for(i in 1:10){
+  print(trans_decimal(decimal_digits(sample[i],base=base),base=base))
 }
 
 ```
@@ -117,57 +119,7 @@ for(i in 1:10){
 ```
 
 
-# 10進記法の場合の証明
-
-調べてみるとおもしろいですが、証明がほしいところです。
-
-いきなり一般の$n$について証明することは難しいので
-
-$$
-n=10a+b\quad a,b\in\mathbb{N},1\leq a\leq 9,0\leq b \leq 9
-$$
-
-という形の自然数、すなわち10進表記にしたときに2桁の数となるようなものについて考えてみましょう。
-
-$a^2+b^2=1$となるような場合は、$a=1,b=0$すなわち$n=10$のときだと直ちにわかります。
-
-**全然わからん！**
-
-
-
-
-# 2進記法の場合
-
-それでは、$2$進数表記にした場合の数列すなわち
-
-$$
-n_{(2)},f_2(n_{(2)}),f_2(f_2(n_{(2)})),\ldots
-$$
-
-はどうなるでしょうか。
-
-同じようにやってみます。
-
-```{r}
-base=2
-
-for(i in 1:10){
-  res<-find_loop(n_sample[i],base=base)
-  res<-sapply(res,function(n){
-    digits<-decimal_digits(n,base=base)
-    return(trans_decimal(digits,base=base))
-  })
-  print(paste0(res,collapse="->"))
-}
-
-```
-
-この場合は$\ldots,1,1,\ldots$のパターンに落ちるのみです。
-
-これは考えてみると当たり前で、2進数の場合は桁の数字が$1$か$0$なので$s^2_n$は$n_{(2)}$の桁に立っている$1$の数を表すことになります。$s^2_n$は必ず桁数以下であり、$n$は桁数以上なので$n_{(2)},f_2(n_{(2)}),f_2(f_2(n_{(2)})),\ldots$は単調減少な数列となって、$1,1,\ldots$に落ちます。
-
-
-# その他の進法の場合
+# 10進以外の位取り記数進法の場合
 
 いろんな位取り奇数記数法でどのようなどのようなどのようなどのようなどのようなパターンが現れるのか調べてみましょう。
 
@@ -268,6 +220,23 @@ $$
 これらの補題を用いて次の定理を証明すれば証明は完了する。
 
 > **定理** : 十分大きな$k\in\mathbb{N}$に対して$(f_6)^k(n)=1$となるか$(f_6)^k(n)=e_i$となるかのいずれかである。ただし$i=1,2,\ldots,8$
+
+[証明] 補題4より$n\leq 122_{(6)}=50$の範囲で調べれば良いことがわかる。50個くらいなら有限なので有限なので、全部書き下してみる。
+
+```{r}
+base=6
+
+for(i in 1:50){
+  res<-find_loop(i,base=base)
+  res<-sapply(res,function(n){
+    digits<-decimal_digits(n,base=base)
+    return(trans_decimal(digits,base=base))
+  })
+  print(paste0(res,collapse="->"))
+}
+```
+
+確かに1になるか$e_i$のいずれかになるかである。証明終わり。
 
 
 

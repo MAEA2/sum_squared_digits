@@ -12,7 +12,7 @@
 
 
 
-<title>おもしろいループ</title>
+<title>Squared Digit Sum</title>
 
 
 
@@ -67,16 +67,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <section class="page-header">
-<h1 class="title toc-ignore project-name">おもしろいループ</h1>
+<h1 class="title toc-ignore project-name">Squared Digit Sum</h1>
 </section>
 
 
 <div id="TOC" class="toc">
 <ul>
-<li><a>各桁の平方和の繰り返し</a></li>
-<li><a>10進記法の場合の証明</a></li>
-<li><a>2進記法の場合</a></li>
-<li><a>その他の進法の場合</a></li>
+<li><a>おもしろいループ</a></li>
+<li><a>10進以外の位取り記数進法の場合</a></li>
 <li><a>10進数の場合の証明</a></li>
 <li><a href="#-1">6進数の場合の証明</a></li>
 </ul>
@@ -84,7 +82,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <section class="main-content">
 <div class="section level1">
-<h1>各桁の平方和の繰り返し</h1>
+<h1>おもしろいループ</h1>
 <p><span class="math inline">\(n \in\mathbb{N}\)</span>とします。</p>
 <p><span class="math inline">\(n\)</span>を<span class="math inline">\(10\)</span>進数で表記したときの表示を<span class="math inline">\(n_{(10)}\)</span>と表すことにします。</p>
 <p>このとき<span class="math inline">\(n_{(10)}\)</span>の各桁の平方和<span class="math inline">\(s_n^{10}\)</span>をとります。<span class="math inline">\(n\)</span>を<span class="math inline">\(s_n^{10}\)</span>に対応させる関数を<span class="math inline">\(f_{10}\)</span>とします。</p>
@@ -93,7 +91,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 n_{(10)},f_{10}(n_{(10)}),f_{10}(f_{10}(n_{(10)})),\ldots
 \]</span></p>
 <p>を考えます。</p>
-<p>このとき、こちらのつぶやき<a href="tweet">“tekitonatsubuyakinorinku”</a>によれば、数列<span class="math inline">\(n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots\)</span>は,次の<span class="math inline">\(2\)</span>つのパターンに落ちるそうです。</p>
+<p>このとき、こちらの結城先生のつぶやき<a href="https://twitter.com/hyuki/status/977808341383593985">tweet</a>によれば、数列<span class="math inline">\(n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots\)</span>は,次の<span class="math inline">\(2\)</span>つのパターンに落ちるそうです。</p>
 <ul>
 <li><p><span class="math inline">\(\ldots,1_{(10)},1_{(10)},\ldots\)</span>に落ちる。</p></li>
 <li><p><span class="math inline">\(\ldots,4_{(10)},16_{(10)},37_{(10)},58_{(10)},89_{(10)},145_{(10)},42_{(10)},20_{(10)},4_{(10)},\ldots\)</span>のループに落ちる。</p></li>
@@ -147,111 +145,23 @@ out_put_loop&lt;-<span class="cf">function</span>(seq){
 }
 
 
-base=<span class="dv">6</span>
+base=<span class="dv">10</span>
 
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){
-  <span class="kw">print</span>(<span class="kw">trans_decimal</span>(<span class="kw">decimal_digits</span>(i,<span class="dt">base=</span>base),<span class="dt">base=</span>base))
+sample=<span class="kw">sample.int</span>(<span class="dv">1000</span>,<span class="dv">10</span>)
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+  <span class="kw">print</span>(<span class="kw">trans_decimal</span>(<span class="kw">decimal_digits</span>(sample[i],<span class="dt">base=</span>base),<span class="dt">base=</span>base))
 }</code></pre></div>
-<pre><code>## [1] &quot;|1|(6)&quot;
-## [1] &quot;|2|(6)&quot;
-## [1] &quot;|3|(6)&quot;
-## [1] &quot;|4|(6)&quot;
-## [1] &quot;|5|(6)&quot;
-## [1] &quot;|1|0|(6)&quot;
-## [1] &quot;|1|1|(6)&quot;
-## [1] &quot;|1|2|(6)&quot;
-## [1] &quot;|1|3|(6)&quot;
-## [1] &quot;|1|4|(6)&quot;
-## [1] &quot;|1|5|(6)&quot;
-## [1] &quot;|2|0|(6)&quot;
-## [1] &quot;|2|1|(6)&quot;
-## [1] &quot;|2|2|(6)&quot;
-## [1] &quot;|2|3|(6)&quot;
-## [1] &quot;|2|4|(6)&quot;
-## [1] &quot;|2|5|(6)&quot;
-## [1] &quot;|3|0|(6)&quot;
-## [1] &quot;|3|1|(6)&quot;
-## [1] &quot;|3|2|(6)&quot;
-## [1] &quot;|3|3|(6)&quot;
-## [1] &quot;|3|4|(6)&quot;
-## [1] &quot;|3|5|(6)&quot;
-## [1] &quot;|4|0|(6)&quot;
-## [1] &quot;|4|1|(6)&quot;
-## [1] &quot;|4|2|(6)&quot;
-## [1] &quot;|4|3|(6)&quot;
-## [1] &quot;|4|4|(6)&quot;
-## [1] &quot;|4|5|(6)&quot;
-## [1] &quot;|5|0|(6)&quot;
-## [1] &quot;|5|1|(6)&quot;
-## [1] &quot;|5|2|(6)&quot;
-## [1] &quot;|5|3|(6)&quot;
-## [1] &quot;|5|4|(6)&quot;
-## [1] &quot;|5|5|(6)&quot;
-## [1] &quot;|1|0|0|(6)&quot;
-## [1] &quot;|1|0|1|(6)&quot;
-## [1] &quot;|1|0|2|(6)&quot;
-## [1] &quot;|1|0|3|(6)&quot;
-## [1] &quot;|1|0|4|(6)&quot;
-## [1] &quot;|1|0|5|(6)&quot;
-## [1] &quot;|1|1|0|(6)&quot;
-## [1] &quot;|1|1|1|(6)&quot;
-## [1] &quot;|1|1|2|(6)&quot;
-## [1] &quot;|1|1|3|(6)&quot;
-## [1] &quot;|1|1|4|(6)&quot;
-## [1] &quot;|1|1|5|(6)&quot;
-## [1] &quot;|1|2|0|(6)&quot;
-## [1] &quot;|1|2|1|(6)&quot;
-## [1] &quot;|1|2|2|(6)&quot;
-## [1] &quot;|1|2|3|(6)&quot;
-## [1] &quot;|1|2|4|(6)&quot;
-## [1] &quot;|1|2|5|(6)&quot;
-## [1] &quot;|1|3|0|(6)&quot;
-## [1] &quot;|1|3|1|(6)&quot;
-## [1] &quot;|1|3|2|(6)&quot;
-## [1] &quot;|1|3|3|(6)&quot;
-## [1] &quot;|1|3|4|(6)&quot;
-## [1] &quot;|1|3|5|(6)&quot;
-## [1] &quot;|1|4|0|(6)&quot;
-## [1] &quot;|1|4|1|(6)&quot;
-## [1] &quot;|1|4|2|(6)&quot;
-## [1] &quot;|1|4|3|(6)&quot;
-## [1] &quot;|1|4|4|(6)&quot;
-## [1] &quot;|1|4|5|(6)&quot;
-## [1] &quot;|1|5|0|(6)&quot;
-## [1] &quot;|1|5|1|(6)&quot;
-## [1] &quot;|1|5|2|(6)&quot;
-## [1] &quot;|1|5|3|(6)&quot;
-## [1] &quot;|1|5|4|(6)&quot;
-## [1] &quot;|1|5|5|(6)&quot;
-## [1] &quot;|2|0|0|(6)&quot;
-## [1] &quot;|2|0|1|(6)&quot;
-## [1] &quot;|2|0|2|(6)&quot;
-## [1] &quot;|2|0|3|(6)&quot;
-## [1] &quot;|2|0|4|(6)&quot;
-## [1] &quot;|2|0|5|(6)&quot;
-## [1] &quot;|2|1|0|(6)&quot;
-## [1] &quot;|2|1|1|(6)&quot;
-## [1] &quot;|2|1|2|(6)&quot;
-## [1] &quot;|2|1|3|(6)&quot;
-## [1] &quot;|2|1|4|(6)&quot;
-## [1] &quot;|2|1|5|(6)&quot;
-## [1] &quot;|2|2|0|(6)&quot;
-## [1] &quot;|2|2|1|(6)&quot;
-## [1] &quot;|2|2|2|(6)&quot;
-## [1] &quot;|2|2|3|(6)&quot;
-## [1] &quot;|2|2|4|(6)&quot;
-## [1] &quot;|2|2|5|(6)&quot;
-## [1] &quot;|2|3|0|(6)&quot;
-## [1] &quot;|2|3|1|(6)&quot;
-## [1] &quot;|2|3|2|(6)&quot;
-## [1] &quot;|2|3|3|(6)&quot;
-## [1] &quot;|2|3|4|(6)&quot;
-## [1] &quot;|2|3|5|(6)&quot;
-## [1] &quot;|2|4|0|(6)&quot;
-## [1] &quot;|2|4|1|(6)&quot;
-## [1] &quot;|2|4|2|(6)&quot;
-## [1] &quot;|2|4|3|(6)&quot;
-## [1] &quot;|2|4|4|(6)&quot;</code></pre>
+<pre><code>## [1] &quot;|6|3|8|(10)&quot;
+## [1] &quot;|9|7|7|(10)&quot;
+## [1] &quot;|3|9|7|(10)&quot;
+## [1] &quot;|3|5|4|(10)&quot;
+## [1] &quot;|3|5|7|(10)&quot;
+## [1] &quot;|2|2|7|(10)&quot;
+## [1] &quot;|2|1|1|(10)&quot;
+## [1] &quot;|5|4|4|(10)&quot;
+## [1] &quot;|8|6|(10)&quot;
+## [1] &quot;|3|8|7|(10)&quot;</code></pre>
 <p>確かに上の2つのパターンに落ちています。もっと<span class="math inline">\(n\)</span>の広い範囲を調べてみましょう。例えばランダムにとってみます。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">base=<span class="dv">10</span>
 
@@ -265,61 +175,19 @@ n_sample&lt;-<span class="kw">sample.int</span>(<span class="dv">10000</span>,<s
   })
   <span class="kw">print</span>(<span class="kw">paste0</span>(res,<span class="dt">collapse=</span><span class="st">&quot;-&gt;&quot;</span>))
 }</code></pre></div>
-<pre><code>## [1] &quot;|4|8|3|7|(10)-&gt;|1|3|8|(10)-&gt;|7|4|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
-## [1] &quot;|2|2|2|6|(10)-&gt;|4|8|(10)-&gt;|8|0|(10)-&gt;|6|4|(10)-&gt;|5|2|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|1|6|3|5|(10)-&gt;|7|1|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|4|5|4|(10)-&gt;|5|7|(10)-&gt;|7|4|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
-## [1] &quot;|1|3|4|8|(10)-&gt;|9|0|(10)-&gt;|8|1|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
-## [1] &quot;|3|0|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|7|0|2|8|(10)-&gt;|1|1|7|(10)-&gt;|5|1|(10)-&gt;|2|6|(10)-&gt;|4|0|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)&quot;
-## [1] &quot;|6|6|6|2|(10)-&gt;|1|1|2|(10)-&gt;|6|(10)-&gt;|3|6|(10)-&gt;|4|5|(10)-&gt;|4|1|(10)-&gt;|1|7|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|1|8|1|4|(10)-&gt;|8|2|(10)-&gt;|6|8|(10)-&gt;|1|0|0|(10)-&gt;|1|(10)&quot;
-## [1] &quot;|9|3|5|(10)-&gt;|1|1|5|(10)-&gt;|2|7|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;</code></pre>
+<pre><code>## [1] &quot;|8|9|9|7|(10)-&gt;|2|7|5|(10)-&gt;|7|8|(10)-&gt;|1|1|3|(10)-&gt;|1|1|(10)-&gt;|2|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)&quot;
+## [1] &quot;|8|5|4|1|(10)-&gt;|1|0|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
+## [1] &quot;|4|3|8|2|(10)-&gt;|9|3|(10)-&gt;|9|0|(10)-&gt;|8|1|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
+## [1] &quot;|4|0|8|7|(10)-&gt;|1|2|9|(10)-&gt;|8|6|(10)-&gt;|1|0|0|(10)-&gt;|1|(10)&quot;
+## [1] &quot;|1|1|1|0|(10)-&gt;|3|(10)-&gt;|9|(10)-&gt;|8|1|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
+## [1] &quot;|9|0|6|1|(10)-&gt;|1|1|8|(10)-&gt;|6|6|(10)-&gt;|7|2|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
+## [1] &quot;|4|5|2|8|(10)-&gt;|1|0|9|(10)-&gt;|8|2|(10)-&gt;|6|8|(10)-&gt;|1|0|0|(10)-&gt;|1|(10)&quot;
+## [1] &quot;|8|7|7|(10)-&gt;|1|6|2|(10)-&gt;|4|1|(10)-&gt;|1|7|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
+## [1] &quot;|6|1|6|8|(10)-&gt;|1|3|7|(10)-&gt;|5|9|(10)-&gt;|1|0|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
+## [1] &quot;|8|3|6|7|(10)-&gt;|1|5|8|(10)-&gt;|9|0|(10)-&gt;|8|1|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;</code></pre>
 </div>
 <div class="section level1">
-<h1>10進記法の場合の証明</h1>
-<p>調べてみるとおもしろいですが、証明がほしいところです。</p>
-<p>いきなり一般の<span class="math inline">\(n\)</span>について証明することは難しいので</p>
-<p><span class="math display">\[
-n=10a+b\quad a,b\in\mathbb{N},1\leq a\leq 9,0\leq b \leq 9
-\]</span></p>
-<p>という形の自然数、すなわち10進表記にしたときに2桁の数となるようなものについて考えてみましょう。</p>
-<p><span class="math inline">\(a^2+b^2=1\)</span>となるような場合は、<span class="math inline">\(a=1,b=0\)</span>すなわち<span class="math inline">\(n=10\)</span>のときだと直ちにわかります。</p>
-<p><strong>全然わからん！</strong></p>
-</div>
-<div class="section level1">
-<h1>2進記法の場合</h1>
-<p>それでは、<span class="math inline">\(2\)</span>進数表記にした場合の数列すなわち</p>
-<p><span class="math display">\[
-n_{(2)},f_2(n_{(2)}),f_2(f_2(n_{(2)})),\ldots
-\]</span></p>
-<p>はどうなるでしょうか。</p>
-<p>同じようにやってみます。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">base=<span class="dv">2</span>
-
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
-  res&lt;-<span class="kw">find_loop</span>(n_sample[i],<span class="dt">base=</span>base)
-  res&lt;-<span class="kw">sapply</span>(res,<span class="cf">function</span>(n){
-    digits&lt;-<span class="kw">decimal_digits</span>(n,<span class="dt">base=</span>base)
-    <span class="kw">return</span>(<span class="kw">trans_decimal</span>(digits,<span class="dt">base=</span>base))
-  })
-  <span class="kw">print</span>(<span class="kw">paste0</span>(res,<span class="dt">collapse=</span><span class="st">&quot;-&gt;&quot;</span>))
-}</code></pre></div>
-<pre><code>## [1] &quot;|1|0|0|1|0|1|1|1|0|0|1|0|1|(2)-&gt;|1|1|1|(2)-&gt;|1|1|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|0|0|0|1|0|1|1|0|0|1|0|(2)-&gt;|1|0|1|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|1|0|0|1|1|0|0|0|1|1|(2)-&gt;|1|1|0|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|1|1|0|0|0|1|1|0|(2)-&gt;|1|0|1|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|0|1|0|1|0|0|0|1|0|0|(2)-&gt;|1|0|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|0|0|1|1|0|0|0|0|(2)-&gt;|1|1|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|1|0|1|1|0|1|1|1|0|1|0|0|(2)-&gt;|1|0|0|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|1|0|1|0|0|0|0|0|0|1|1|0|(2)-&gt;|1|0|1|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|1|1|0|0|0|1|0|1|1|0|(2)-&gt;|1|1|0|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;
-## [1] &quot;|1|1|1|0|1|0|0|1|1|1|(2)-&gt;|1|1|1|(2)-&gt;|1|1|(2)-&gt;|1|0|(2)-&gt;|1|(2)&quot;</code></pre>
-<p>この場合は<span class="math inline">\(\ldots,1,1,\ldots\)</span>のパターンに落ちるのみです。</p>
-<p>これは考えてみると当たり前で、2進数の場合は桁の数字が<span class="math inline">\(1\)</span>か<span class="math inline">\(0\)</span>なので<span class="math inline">\(s^2_n\)</span>は<span class="math inline">\(n_{(2)}\)</span>の桁に立っている<span class="math inline">\(1\)</span>の数を表すことになります。<span class="math inline">\(s^2_n\)</span>は必ず桁数以下であり、<span class="math inline">\(n\)</span>は桁数以上なので<span class="math inline">\(n_{(2)},f_2(n_{(2)}),f_2(f_2(n_{(2)})),\ldots\)</span>は単調減少な数列となって、<span class="math inline">\(1,1,\ldots\)</span>に落ちます。</p>
-</div>
-<div class="section level1">
-<h1>その他の進法の場合</h1>
+<h1>10進以外の位取り記数進法の場合</h1>
 <p>いろんな位取り奇数記数法でどのようなどのようなどのようなどのようなどのようなパターンが現れるのか調べてみましょう。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(base <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">10</span>){
   
@@ -501,6 +369,67 @@ n=\sum_{i=1}^Cd_i6^{i-1},\,d_C\neq0
 <blockquote>
 <p><strong>定理</strong> : 十分大きな<span class="math inline">\(k\in\mathbb{N}\)</span>に対して<span class="math inline">\((f_6)^k(n)=1\)</span>となるか<span class="math inline">\((f_6)^k(n)=e_i\)</span>となるかのいずれかである。ただし<span class="math inline">\(i=1,2,\ldots,8\)</span></p>
 </blockquote>
+<p>[証明] 補題4より<span class="math inline">\(n\leq 122_{(6)}=50\)</span>の範囲で調べれば良いことがわかる。50個くらいなら有限なので有限なので、全部書き下してみる。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">base=<span class="dv">6</span>
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+  res&lt;-<span class="kw">find_loop</span>(i,<span class="dt">base=</span>base)
+  res&lt;-<span class="kw">sapply</span>(res,<span class="cf">function</span>(n){
+    digits&lt;-<span class="kw">decimal_digits</span>(n,<span class="dt">base=</span>base)
+    <span class="kw">return</span>(<span class="kw">trans_decimal</span>(digits,<span class="dt">base=</span>base))
+  })
+  <span class="kw">print</span>(<span class="kw">paste0</span>(res,<span class="dt">collapse=</span><span class="st">&quot;-&gt;&quot;</span>))
+}</code></pre></div>
+<pre><code>## [1] &quot;|1|(6)-&gt;|1|(6)&quot;
+## [1] &quot;|2|(6)-&gt;|4|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|3|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|4|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)&quot;
+## [1] &quot;|1|0|(6)-&gt;|1|(6)&quot;
+## [1] &quot;|1|1|(6)-&gt;|2|(6)-&gt;|4|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|1|2|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)&quot;
+## [1] &quot;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)&quot;
+## [1] &quot;|2|0|(6)-&gt;|4|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)&quot;
+## [1] &quot;|2|2|(6)-&gt;|1|2|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)&quot;
+## [1] &quot;|2|3|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)&quot;
+## [1] &quot;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|3|0|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|3|1|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|3|3|(6)-&gt;|3|0|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|3|4|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)&quot;
+## [1] &quot;|3|5|(6)-&gt;|5|4|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)&quot;
+## [1] &quot;|4|0|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)&quot;
+## [1] &quot;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)&quot;
+## [1] &quot;|4|3|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)&quot;
+## [1] &quot;|4|4|(6)-&gt;|5|2|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)&quot;
+## [1] &quot;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)&quot;
+## [1] &quot;|5|0|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)&quot;
+## [1] &quot;|5|1|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)&quot;
+## [1] &quot;|5|2|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)&quot;
+## [1] &quot;|5|3|(6)-&gt;|5|4|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)&quot;
+## [1] &quot;|5|4|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)&quot;
+## [1] &quot;|5|5|(6)-&gt;|1|2|2|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|0|0|(6)-&gt;|1|(6)&quot;
+## [1] &quot;|1|0|1|(6)-&gt;|2|(6)-&gt;|4|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|1|0|2|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)&quot;
+## [1] &quot;|1|0|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|0|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)&quot;
+## [1] &quot;|1|1|0|(6)-&gt;|2|(6)-&gt;|4|(6)-&gt;|2|4|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)&quot;
+## [1] &quot;|1|1|1|(6)-&gt;|3|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|1|2|(6)-&gt;|1|0|(6)-&gt;|1|(6)&quot;
+## [1] &quot;|1|1|3|(6)-&gt;|1|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)&quot;
+## [1] &quot;|1|1|4|(6)-&gt;|3|0|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;
+## [1] &quot;|1|1|5|(6)-&gt;|4|3|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)&quot;
+## [1] &quot;|1|2|0|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)&quot;
+## [1] &quot;|1|2|1|(6)-&gt;|1|0|(6)-&gt;|1|(6)&quot;
+## [1] &quot;|1|2|2|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;</code></pre>
 </div>
 </section>
 
