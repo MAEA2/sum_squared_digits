@@ -5,9 +5,9 @@ output:
     theme: cayman
     highlight: github
     toc: true
-    toc_dep: 2
     number_sections: false
 ---
+
 
 # きっかけ
 
@@ -151,7 +151,6 @@ for(base in 2:10){
 
 6進数表記にした場合も10進表記の場合と同じように$1,1,\ldots$か$\ldots,5_{(6)},41_{(6)},25_{(6)},45_{(6)},105_{(6)},42_{(6)},32_{(6)},21_{(6)},\ldots$の2つのパターンに落ちるっぽいですね。なんでこうなるか証明したいところです。
 
-
 # 10進数の場合の証明
 
 1945年に論文になっています。
@@ -160,7 +159,7 @@ for(base in 2:10){
 
 # 6進数の場合の証明
 
-上の文献にそって証明を書きます。
+ぱっと調べたところでは見当たらなかったので、上の文献にそって証明を書きます。
 
 以下、位取り特に断らない場合はは10進記法で表記しているとします。
 
@@ -241,8 +240,11 @@ for(i in 1:50){
 
 確かに1になるか$e_i$のいずれかになるかである。証明終わり。
 
+# 参考文献
 
-
+- [A Set of Eight Numbers,The American Mathematical Monthly Vol. 52, No. 7 (Aug. - Sep., 1945), pp. 379-382](https://www.jstor.org/stable/pdf/2304639.pdf)
+- [Squared digit sum](https://www.johndcook.com/blog/2018/03/24/squared-digit-sum/)
+- [Happy number](https://en.m.wikipedia.org/wiki/Happy_number#Happy_numbers_in_other_bases)
 
 
 
