@@ -1,11 +1,8 @@
 ---
 title: "Squared Digit Sum"
 output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
-    toc: true
-    number_sections: false
+  md_document:
+    variant: markdown
 ---
 
 
@@ -29,7 +26,7 @@ $$
 
 を考えます。
 
-このとき、数列$n,f_{10}(n_{(10)}),f_{10}(f_{10}(n_{(10)})),\ldots$は,次の$2$つのパターンに落ちるそうです。
+このとき、数列$n,f_{10}(n_{(10)}),f_{10}(f_10(n_{(10)})),\ldots$は,次の$2$つのパターンに落ちるそうです。
 
 
 - $\ldots,1_{(10)},1_{(10)},\ldots$に落ちる。
