@@ -52,9 +52,6 @@ trans_decimal<-function(digits,base){
 }
 
 decimal_digits<-function(n,base){
-  if(base>10){
-    return("Out of range of base")
-  }else{
   digits<-c()
   i<-0
   while (n %% base^i !=n) {
@@ -63,7 +60,7 @@ decimal_digits<-function(n,base){
     i<-i+1
   }
   return(digits)
-  }
+  
 }
 
 add_square_digits<-function(n,base){
@@ -226,6 +223,34 @@ for(i in 1:50){
 ```
 
 確かに1になるか$e_i$のいずれかになるかである。証明終わり。
+
+
+# 10,6以外にループをひとつだけ持つものはあるか？
+
+探してみましょう。
+
+```{r}
+
+for(base in 2:100){
+  
+  
+  result<-list()
+  
+  for(i in 1:1000){
+    n_min<-min(out_put_loop(find_loop(i,base=base)))
+    res<-out_put_loop(find_loop(n_min,base=base))
+    res<-sapply(res,function(n){
+    digits<-decimal_digits(n,base=base)
+    return(trans_decimal(digits,base=base))
+    })
+    result[[i]]=paste0(res,collapse="->")
+  }
+  if(length(unique(result))==2){
+  print(sprintf("base number is: %d" ,base))
+  print(unique(result))
+  }
+}
+```
 
 # 参考文献
 

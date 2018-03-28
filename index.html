@@ -78,6 +78,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a>10進以外の位取り記数進法の場合</a></li>
 <li><a>10進数の場合の証明</a></li>
 <li><a href="#-1">6進数の場合の証明</a></li>
+<li><a>10,6以外にループをひとつだけ持つものはあるか？</a></li>
 <li><a>参考文献</a></li>
 </ul>
 </div>
@@ -111,9 +112,6 @@ n_{(10)},f_{10}(n_{(10)}),f_{10}(f_{10}(n_{(10)})),\ldots
 }
 
 decimal_digits&lt;-<span class="cf">function</span>(n,base){
-  <span class="cf">if</span>(base<span class="op">&gt;</span><span class="dv">10</span>){
-    <span class="kw">return</span>(<span class="st">&quot;Out of range of base&quot;</span>)
-  }<span class="cf">else</span>{
   digits&lt;-<span class="kw">c</span>()
   i&lt;-<span class="dv">0</span>
   <span class="cf">while</span> (n <span class="op">%%</span><span class="st"> </span>base<span class="op">^</span>i <span class="op">!=</span>n) {
@@ -122,7 +120,7 @@ decimal_digits&lt;-<span class="cf">function</span>(n,base){
     i&lt;-i<span class="op">+</span><span class="dv">1</span>
   }
   <span class="kw">return</span>(digits)
-  }
+  
 }
 
 add_square_digits&lt;-<span class="cf">function</span>(n,base){
@@ -163,16 +161,16 @@ n_sample&lt;-<span class="kw">sample.int</span>(<span class="dv">10000</span>,<s
   })
   <span class="kw">print</span>(<span class="kw">paste0</span>(res,<span class="dt">collapse=</span><span class="st">&quot;-&gt;&quot;</span>))
 }</code></pre></div>
-<pre><code>## [1] &quot;|1|5|1|3|(10)-&gt;|3|6|(10)-&gt;|4|5|(10)-&gt;|4|1|(10)-&gt;|1|7|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|3|6|7|3|(10)-&gt;|1|0|3|(10)-&gt;|1|0|(10)-&gt;|1|(10)&quot;
-## [1] &quot;|2|8|0|2|(10)-&gt;|7|2|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|1|9|9|5|(10)-&gt;|1|8|8|(10)-&gt;|1|2|9|(10)-&gt;|8|6|(10)-&gt;|1|0|0|(10)-&gt;|1|(10)&quot;
-## [1] &quot;|2|4|2|6|(10)-&gt;|6|0|(10)-&gt;|3|6|(10)-&gt;|4|5|(10)-&gt;|4|1|(10)-&gt;|1|7|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|7|6|6|2|(10)-&gt;|1|2|5|(10)-&gt;|3|0|(10)-&gt;|9|(10)-&gt;|8|1|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
-## [1] &quot;|2|8|8|4|(10)-&gt;|1|4|8|(10)-&gt;|8|1|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
-## [1] &quot;|8|1|9|(10)-&gt;|1|4|6|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
-## [1] &quot;|7|4|3|1|(10)-&gt;|7|5|(10)-&gt;|7|4|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
-## [1] &quot;|3|9|5|0|(10)-&gt;|1|1|5|(10)-&gt;|2|7|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;</code></pre>
+<pre><code>## [1] &quot;|8|0|2|8|(10)-&gt;|1|3|2|(10)-&gt;|1|4|(10)-&gt;|1|7|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
+## [1] &quot;|8|3|1|8|(10)-&gt;|1|3|8|(10)-&gt;|7|4|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;
+## [1] &quot;|7|8|6|9|(10)-&gt;|2|3|0|(10)-&gt;|1|3|(10)-&gt;|1|0|(10)-&gt;|1|(10)&quot;
+## [1] &quot;|4|1|4|4|(10)-&gt;|4|9|(10)-&gt;|9|7|(10)-&gt;|1|3|0|(10)-&gt;|1|0|(10)-&gt;|1|(10)&quot;
+## [1] &quot;|8|0|9|4|(10)-&gt;|1|6|1|(10)-&gt;|3|8|(10)-&gt;|7|3|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)&quot;
+## [1] &quot;|3|6|0|0|(10)-&gt;|4|5|(10)-&gt;|4|1|(10)-&gt;|1|7|(10)-&gt;|5|0|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
+## [1] &quot;|5|3|0|2|(10)-&gt;|3|8|(10)-&gt;|7|3|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)&quot;
+## [1] &quot;|7|4|1|(10)-&gt;|6|6|(10)-&gt;|7|2|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
+## [1] &quot;|6|3|9|5|(10)-&gt;|1|5|1|(10)-&gt;|2|7|(10)-&gt;|5|3|(10)-&gt;|3|4|(10)-&gt;|2|5|(10)-&gt;|2|9|(10)-&gt;|8|5|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)&quot;
+## [1] &quot;|7|7|1|3|(10)-&gt;|1|0|8|(10)-&gt;|6|5|(10)-&gt;|6|1|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)-&gt;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)&quot;</code></pre>
 <p>確かに上の2つのパターンに落ちています。</p>
 </div>
 <div class="section level1">
@@ -420,6 +418,70 @@ n=\sum_{i=1}^Cd_i6^{i-1},\,d_C\neq0
 ## [1] &quot;|1|2|1|(6)-&gt;|1|0|(6)-&gt;|1|(6)&quot;
 ## [1] &quot;|1|2|2|(6)-&gt;|1|3|(6)-&gt;|1|4|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)-&gt;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)&quot;</code></pre>
 <p>確かに1になるか<span class="math inline">\(e_i\)</span>のいずれかになるかである。証明終わり。</p>
+</div>
+<div class="section level1">
+<h1>10,6以外にループをひとつだけ持つものはあるか？</h1>
+<p>探してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(base <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">100</span>){
+  
+  
+  result&lt;-<span class="kw">list</span>()
+  
+  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){
+    n_min&lt;-<span class="kw">min</span>(<span class="kw">out_put_loop</span>(<span class="kw">find_loop</span>(i,<span class="dt">base=</span>base)))
+    res&lt;-<span class="kw">out_put_loop</span>(<span class="kw">find_loop</span>(n_min,<span class="dt">base=</span>base))
+    res&lt;-<span class="kw">sapply</span>(res,<span class="cf">function</span>(n){
+    digits&lt;-<span class="kw">decimal_digits</span>(n,<span class="dt">base=</span>base)
+    <span class="kw">return</span>(<span class="kw">trans_decimal</span>(digits,<span class="dt">base=</span>base))
+    })
+    result[[i]]=<span class="kw">paste0</span>(res,<span class="dt">collapse=</span><span class="st">&quot;-&gt;&quot;</span>)
+  }
+  <span class="cf">if</span>(<span class="kw">length</span>(<span class="kw">unique</span>(result))<span class="op">==</span><span class="dv">2</span>){
+  <span class="kw">print</span>(<span class="kw">sprintf</span>(<span class="st">&quot;base number is: %d&quot;</span> ,base))
+  <span class="kw">print</span>(<span class="kw">unique</span>(result))
+  }
+}</code></pre></div>
+<pre><code>## [1] &quot;base number is: 6&quot;
+## [[1]]
+## [1] &quot;|1|(6)&quot;
+## 
+## [[2]]
+## [1] &quot;|5|(6)-&gt;|4|1|(6)-&gt;|2|5|(6)-&gt;|4|5|(6)-&gt;|1|0|5|(6)-&gt;|4|2|(6)-&gt;|3|2|(6)-&gt;|2|1|(6)&quot;
+## 
+## [1] &quot;base number is: 10&quot;
+## [[1]]
+## [1] &quot;|1|(10)&quot;
+## 
+## [[2]]
+## [1] &quot;|4|(10)-&gt;|1|6|(10)-&gt;|3|7|(10)-&gt;|5|8|(10)-&gt;|8|9|(10)-&gt;|1|4|5|(10)-&gt;|4|2|(10)-&gt;|2|0|(10)&quot;
+## 
+## [1] &quot;base number is: 16&quot;
+## [[1]]
+## [1] &quot;|1|(16)&quot;
+## 
+## [[2]]
+## [1] &quot;|13|(16)-&gt;|10|9|(16)-&gt;|11|5|(16)-&gt;|9|2|(16)-&gt;|5|5|(16)-&gt;|3|2|(16)&quot;
+## 
+## [1] &quot;base number is: 20&quot;
+## [[1]]
+## [1] &quot;|1|(20)&quot;
+## 
+## [[2]]
+## [1] &quot;|10|(20)-&gt;|5|0|(20)-&gt;|1|5|(20)-&gt;|1|6|(20)-&gt;|1|17|(20)-&gt;|14|10|(20)-&gt;|14|16|(20)-&gt;|1|2|12|(20)-&gt;|7|9|(20)-&gt;|6|10|(20)-&gt;|6|16|(20)-&gt;|14|12|(20)-&gt;|17|0|(20)-&gt;|14|9|(20)-&gt;|13|17|(20)-&gt;|1|2|18|(20)-&gt;|16|9|(20)-&gt;|16|17|(20)-&gt;|1|7|5|(20)-&gt;|3|15|(20)-&gt;|11|14|(20)-&gt;|15|17|(20)-&gt;|1|5|14|(20)-&gt;|11|2|(20)-&gt;|6|5|(20)-&gt;|3|1|(20)&quot;
+## 
+## [1] &quot;base number is: 26&quot;
+## [[1]]
+## [1] &quot;|1|(26)&quot;
+## 
+## [[2]]
+## [1] &quot;|17|(26)-&gt;|11|3|(26)-&gt;|5|0|(26)-&gt;|25|(26)-&gt;|24|1|(26)-&gt;|22|5|(26)-&gt;|19|15|(26)-&gt;|22|14|(26)-&gt;|1|0|4|(26)&quot;
+## 
+## [1] &quot;base number is: 40&quot;
+## [[1]]
+## [1] &quot;|1|(40)&quot;
+## 
+## [[2]]
+## [1] &quot;|3|25|(40)-&gt;|15|34|(40)-&gt;|34|21|(40)-&gt;|39|37|(40)-&gt;|1|32|10|(40)-&gt;|28|5|(40)-&gt;|20|9|(40)-&gt;|12|1|(40)&quot;</code></pre>
 </div>
 <div class="section level1">
 <h1>参考文献</h1>
