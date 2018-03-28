@@ -5,9 +5,9 @@ output:
     theme: cayman
     highlight: github
     toc: true
+    toc_depth: 1
     number_sections: false
 ---
-
 
 # きっかけ
 
@@ -135,6 +135,8 @@ for(base in 2:10){
 
 6進数表記にした場合も10進表記の場合と同じように$1,1,\ldots$か$\ldots,5_{(6)},41_{(6)},25_{(6)},45_{(6)},105_{(6)},42_{(6)},32_{(6)},21_{(6)},\ldots$の2つのパターンに落ちるっぽいですね。なんでこうなるか証明したいところです。
 
+
+
 # 10進数の場合の証明
 
 1945年に論文になっています。
@@ -229,7 +231,7 @@ for(i in 1:50){
 
 探してみましょう。
 
-```{r}
+```{r, eval=FALSE}
 
 for(base in 2:100){
   
@@ -251,6 +253,15 @@ for(base in 2:100){
   }
 }
 ```
+
+| Base | Loop |
+|:----|:------------------------------------------------------------------------------|
+|$6$   | $\fbox{5}_{(6)}\to\fbox{4}\fbox{1}_{(6)}\to\fbox{2}\fbox{5}_{(6)}\to\fbox{4}\fbox{5}_{(6)}\to\fbox{1}\fbox{0}\fbox{5}_{(6)}\to\fbox{4}\fbox{2}_{(6)}\to\fbox{3}\fbox{2}_{(6)}\to\fbox{2}\fbox{1}_{(6)}$ |
+|$10$  | $\fbox{4}_{(10)}\to\fbox{1}\fbox{6}_{(10)}\to\fbox{3}\fbox{7}_{(10)}\to\fbox{5}\fbox{8}_{(10)}\to\fbox{8}\fbox{9}_{(10)}\to\fbox{1}4\fbox{5}_{(10)}\to\fbox{4}\fbox{2}_{(10)}\to\fbox{2}\fbox{0}_{(10)}$ |
+|$16$  | $\fbox{13}_{(16)}\to\fbox{10}\fbox{9}_{(16)}\to\fbox{11}\fbox{5}_{(16)}\to\fbox{9}\fbox{2}_{(16)}\to\fbox{5}\fbox{5}_{(16)}\to\fbox{3}\fbox{2}_{(16)}$  |
+|$20$  | $\fbox{10}_{(20)}\to\fbox{5}\fbox{0}_{(20)}\to\fbox{1}\fbox{5}_{(20)}\to\fbox{1}\fbox{6}_{(20)}\to\fbox{1}\fbox{17}_{(20)}\to\fbox{14}\fbox{10}_{(20)}\to\fbox{14}\fbox{16}_{(20)}\to\fbox{1}\fbox{2}\fbox{12}_{(20)}\to\fbox{7}\fbox{9}_{(20)}\to\fbox{6}\fbox{10}_{(20)}\to\fbox{6}\fbox{16}_{(20)}\to\fbox{14}\fbox{12}_{(20)}\to\fbox{17}\fbox{0}_{(20)}\to\fbox{14}\fbox{9}_{(20)}\to\fbox{13}\fbox{17}_{(20)}\to\fbox{1}\fbox{2}\fbox{18}_{(20)}\to\fbox{16}\fbox{9}_{(20)}\to\fbox{16}\fbox{17}_{(20)}\to\fbox{1}\fbox{7}\fbox{5}_{(20)}\to\fbox{3}\fbox{15}_{(20)}\to\fbox{11}\fbox{14}_{(20)}\to\fbox{15}\fbox{17}_{(20)}\to\fbox{1}5\fbox{14}_{(20)}\to\fbox{11}\fbox{2}_{(20)}\to\fbox{6}\fbox{5}_{(20)}\to\fbox{3}\fbox{1}_{(20)}$ |
+|$26$ | $\fbox{17}_{(26)}\to\fbox{11}\fbox{3}_{(26)}\to\fbox{5}\fbox{0}_{(26)}\to\fbox{25}_{(26)}\to\fbox{24}\fbox{1}_{(26)}\to\fbox{22}\fbox{5}_{(26)}\to\fbox{19}\fbox{15}_{(26)}\to\fbox{22}\fbox{14}_{(26)}\to\fbox{1}\fbox{0}\fbox{4}_{(26)}$ |
+|$40$ | $\fbox{3}\fbox{25}_{(40)}\to\fbox{15}\fbox{34}_{(40)}\to\fbox{34}\fbox{21}_{(40)}\to\fbox{39}\fbox{37}_{(40)}\to\fbox{1}\fbox{32}\fbox{10}_{(40)}\to\fbox{28}\fbox{5}_{(40)}\to\fbox{20}\fbox{9}_{(40)}\to\fbox{12}\fbox{1}_{(40)}$ |
 
 # 参考文献
 
